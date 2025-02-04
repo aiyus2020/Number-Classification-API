@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-const classifyRoutes = require("./routes/classifyRoutes");
+const classifyRoutes = require("./src/routes/classifyRoutes");
 
 const app = express();
 app.use(cors());
