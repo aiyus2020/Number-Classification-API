@@ -1,15 +1,17 @@
+const axios = require("axios");
+const {
+  checkPrime,
+  checkPerfect,
+  checkArmstrong,
+  sumOfDigits,
+} = require("../utils/classifyUtils");
+
 exports.classifyNumber = async (req, res) => {
   const { number } = req.query;
 
   // Validate input (check if it's a valid number, including negatives and floats)
   if (!number || isNaN(number)) {
-    return res
-      .status(400)
-      .json({
-        number,
-        error: true,
-        message: "Invalid input, must be a number",
-      });
+    return res.status(400).json({ number, error: true });
   }
 
   // Parse the number as a float (allows for negative and floating-point values)
@@ -18,7 +20,7 @@ exports.classifyNumber = async (req, res) => {
   // Initialize an array for properties
   const properties = [];
 
-  // Check mathematical properties only if it's a valid integer
+  // Check if it's a valid integer for mathematical properties
   if (Number.isInteger(num)) {
     if (checkPrime(num)) properties.push("prime");
     if (checkPerfect(num)) properties.push("perfect");
@@ -42,11 +44,11 @@ exports.classifyNumber = async (req, res) => {
       is_prime: checkPrime(num),
       is_perfect: checkPerfect(num),
       properties,
-      class_sum: sumOfDigits(num),
+      digit_sum: sumOfDigits(num),
       fun_fact: funFact,
     });
   } else {
-    // If it's a valid float but not an integer, just return a basic response
+    // Handle float case (if needed)
     return res.status(200).json({
       number: num,
       properties: ["float"],

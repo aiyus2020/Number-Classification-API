@@ -1,16 +1,14 @@
-const axios = require("axios");
-
-// Check if number is prime
-const isPrime = (num) => {
+// Function to check if a number is prime
+const checkPrime = (num) => {
   if (num < 2) return false;
-  for (let i = 2; i <= Math.sqrt(num); i++) {
+  for (let i = 2; i * i <= num; i++) {
     if (num % i === 0) return false;
   }
   return true;
 };
 
-// Check if number is perfect (sum of divisors equals number)
-const isPerfect = (num) => {
+// Function to check if a number is perfect
+const checkPerfect = (num) => {
   let sum = 1;
   for (let i = 2; i * i <= num; i++) {
     if (num % i === 0) {
@@ -21,38 +19,20 @@ const isPerfect = (num) => {
   return sum === num && num !== 1;
 };
 
-// Determine number properties
-const getProperties = (num) => {
-  let properties = [];
+// Function to check if a number is an Armstrong number
+const checkArmstrong = (num) => {
+  const digits = num.toString().split("");
+  const power = digits.length;
+  const sum = digits.reduce((acc, d) => acc + Math.pow(parseInt(d), power), 0);
+  return sum === num;
+};
 
-  if (num % 2 === 0) properties.push("even");
-  else properties.push("odd");
-
-  if (isPrime(num)) properties.push("prime");
-  if (isPerfect(num)) properties.push("perfect");
-
-  // Check Armstrong number
-  const sumOfPowers = num
+// Function to calculate the sum of digits
+const sumOfDigits = (num) => {
+  return num
     .toString()
     .split("")
-    .reduce(
-      (acc, digit) => acc + Math.pow(parseInt(digit), num.toString().length),
-      0
-    );
-
-  if (sumOfPowers === num) properties.push("armstrong");
-
-  return properties;
+    .reduce((acc, d) => acc + parseInt(d), 0);
 };
 
-// Fetch fun fact from Numbers API
-const getFunFact = async (num) => {
-  try {
-    const response = await axios.get(`http://numbersapi.com/${num}/math`);
-    return response.data;
-  } catch (error) {
-    return "No fun fact found.";
-  }
-};
-
-module.exports = { getProperties, getFunFact };
+module.exports = { checkPrime, checkPerfect, checkArmstrong, sumOfDigits };
