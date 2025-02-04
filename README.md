@@ -1,151 +1,94 @@
-# Number Classification API
+📊 Number Classification API
+🔗 Live Demo
+🚀 API Base URL: Number Classification API
 
-## Overview
+📝 Project Description
+The Number Classification API is a simple RESTful service that provides mathematical properties and fun facts about any given number. It determines whether a number is prime, perfect, Armstrong, and more.
 
-The **Number Classification API** is a simple yet powerful API built with **Node.js** and **Express.js**. It classifies numbers based on mathematical properties and fetches interesting fun facts about them from the [Numbers API](http://numbersapi.com/).
+🎯 Features
+✅ Classifies numbers based on various mathematical properties
+✅ Fetches fun facts using the Numbers API
+✅ Returns JSON responses in a structured format
+✅ Handles errors gracefully
+✅ Deployed on Render, making it publicly accessible
 
-## Features
+🚀 API Usage
+1️⃣ Classify a Number
+Endpoint:
 
-✅ Classifies a number as **Prime**, **Perfect**, **Armstrong**, **Even**, or **Odd**  
-✅ Fetches fun facts about numbers from [Numbers API](http://numbersapi.com/)  
-✅ Handles errors gracefully  
-✅ Deployed and publicly accessible
+http
+Copy
+Edit
+GET /api/classify-number?number=<your_number>
+Example Request:
 
-## Live API Endpoint
+http
+Copy
+Edit
+GET https://number-classification-api-0erc.onrender.com/api/classify-number?number=371
+Example Response (200 OK):
 
-🚀 **Base URL:** `https://your-api-url.com/api/classify-number?number=<number>`  
-📌 Replace `<number>` with any number you want to classify.
-
-### Example Request:
-
-```sh
-GET https://your-api-url.com/api/classify-number?number=371
-```
-
-### Example Response:
-
-```json
+json
+Copy
+Edit
 {
-  "number": 371,
-  "is_prime": false,
-  "is_perfect": false,
-  "properties": ["armstrong", "odd"],
-  "class_sum": 11,
-  "fun_fact": "371 is an Armstrong number because 3^3 + 7^3 + 1^3 = 371"
+"number": 371,
+"is_prime": false,
+"is_perfect": false,
+"properties": ["armstrong", "odd"],
+"class_sum": 11,
+"fun_fact": "371 is an Armstrong number because 3^3 + 7^3 + 1^3 = 371"
 }
-```
+2️⃣ Handling Errors
+If an invalid input is provided, the API returns a 400 Bad Request error.
+Example Request:
 
----
+http
+Copy
+Edit
+GET https://number-classification-api-0erc.onrender.com/api/classify-number?number=abc
+Example Response (400 Bad Request):
 
-## Installation & Setup
+json
+Copy
+Edit
+{
+"number": "abc",
+"error": true
+}
+🛠️ Tech Stack
+Node.js + Express.js
+Numbers API (for fun facts)
+Deployed on Render
+🛠️ How to Run Locally
+1️⃣ Clone the repository:
 
-### 1️⃣ Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/your-username/number-classification-api.git
+cd number-classification-api
+2️⃣ Install dependencies:
 
-```sh
-git clone https://github.com/YOUR_GITHUB_USERNAME/number-classifier-api.git
-cd number-classifier-api
-```
-
-### 2️⃣ Install Dependencies
-
-```sh
+bash
+Copy
+Edit
 npm install
-```
+3️⃣ Create a .env file in the root directory and add:
 
-### 3️⃣ Run Locally
+makefile
+Copy
+Edit
+PORT=3000
+4️⃣ Start the server:
 
-```sh
+bash
+Copy
+Edit
 npm start
-```
+The API will be available at http://localhost:3000/api/classify-number?number=371.
 
-👉 API runs at `http://localhost:3000/api/classify-number?number=371`
+🤝 Contributing
+Feel free to submit issues or pull requests to improve this API!
 
----
-
-## Deployment
-
-This API can be deployed using **Railway**, **Render**, **Vercel**, or **Heroku**.
-
-### Deploy on Railway (Recommended)
-
-1. Push your code to **GitHub**:
-   ```sh
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_GITHUB_USERNAME/number-classifier-api.git
-   git push -u origin main
-   ```
-2. Deploy on **Railway**:
-   - Sign up at [Railway.app](https://railway.app/)
-   - Create a new project
-   - Connect your **GitHub Repo**
-   - Deploy! 🚀
-
----
-
-## API Details
-
-### **Endpoint:** `/api/classify-number`
-
-#### **Request Parameters:**
-
-| Parameter | Type   | Required | Description                 |
-| --------- | ------ | -------- | --------------------------- |
-| `number`  | Number | ✅ Yes   | The number to be classified |
-
-#### **Response Fields:**
-
-| Field        | Type    | Description                                                   |
-| ------------ | ------- | ------------------------------------------------------------- |
-| `number`     | Number  | The input number                                              |
-| `is_prime`   | Boolean | Whether the number is prime                                   |
-| `is_perfect` | Boolean | Whether the number is perfect                                 |
-| `properties` | Array   | List of classifications (Prime, Even, Odd, etc.)              |
-| `class_sum`  | Number  | Sum of the digits of the number                               |
-| `fun_fact`   | String  | A fun fact fetched from [Numbers API](http://numbersapi.com/) |
-
----
-
-## Error Handling
-
-The API gracefully handles errors and returns appropriate responses.
-
-### **Example Invalid Request:**
-
-```sh
-GET https://your-api-url.com/api/classify-number?number=abc
-```
-
-**Response:**
-
-```json
-{
-  "number": "abc",
-  "error": true,
-  "message": "Invalid input, must be a number"
-}
-```
-
----
-
-## Technologies Used
-
-- **Node.js** + **Express.js**
-- **Axios** (for external API requests)
-- **Cors** (for cross-origin support)
-- **Dotenv** (for environment variables)
-
----
-
-## License
-
-This project is **open-source** and available under the **MIT License**.
-
----
-
-## Contact
-
-💻 **GitHub:** @aiyus2020(https://github.com/aiyus2020)  
-📧 **Email:** aiyusboss@gmail.com
+Let me know if you want any more changes! 🚀🔥
